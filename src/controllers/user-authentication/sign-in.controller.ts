@@ -9,12 +9,14 @@ export const signIn = async (req: Request, res: Response) => {
     const user = await UserModel.findOne({ phone }).select("+password");
 
     if (!user) {
-      res.status(400).json({ message: "No user found with this phone." });
+      res
+        .status(400)
+        .json({ message: `${phone} дугаартай хэрэглэгч байхгүй байна` });
       return;
     }
     const isPasswordCorrect = comparePassword(password, user.password);
     if (!isPasswordCorrect) {
-      res.status(401).json({ message: "Incorrect email or password." });
+      res.status(401).json({ message: "Нууц үг буруу байна" });
     }
 
     res.status(200).json({ message: "Successfully logged in.", user });

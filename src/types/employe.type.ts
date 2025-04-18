@@ -14,5 +14,5 @@ export type employeType = {
   address: string;
   experience: string;
   category: categoryStatusEnum;
-  products: ProductModelType;
+  products: ProductModelType[];
 };

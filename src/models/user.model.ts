@@ -4,7 +4,7 @@ import { userRoleStatusEnum } from "../constants";
 
 const UserSchema = new Schema<UserModelType>(
   {
-    userName: { type: String, unique: true, required: true },
+    userName: { type: String,  required: true },
     email: { type: String, unique: true, required: true },
     password: { type: String, required: true, select: false },
     phone: { type: Number, required: true, unique: true },

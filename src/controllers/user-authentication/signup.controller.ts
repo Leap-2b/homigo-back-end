@@ -1,5 +1,8 @@
 import { Request, Response } from "express";
-import { isExistingUser } from "../../utils/existing-user-check";
+import {
+  isExistingEmailUser,
+  isExistingPhoneUser,
+} from "../../utils/existing-user-check";
 import { hashPassword } from "../../utils/password-util";
 import { UserModel } from "../../models";
 
@@ -10,10 +13,19 @@ export const signUp = async (req: Request, res: Response) => {
       res.status(400).json({ message: "Email is required." });
       return;
     }
-    const existingUser = await isExistingUser(email);
+    const existingEmailUser = await isExistingEmailUser(email);
+    const existingNunberUser = await isExistingPhoneUser(phone);
 
-    if (existingUser) {
-      res.status(409).json({ message: "User is already registered." });
+    if (existingEmailUser) {
+      res
+        .status(409)
+        .json({ message: "Емайл дээр хэрэглэгч аль хэдийн бүртгүүлсэн байна" });
+      return;
+    }
+    if (existingNunberUser) {
+      res
+        .status(409)
+        .json({ message: "Утас дээр хэрэглэгч аль хэдийн бүртгүүлсэн байна" });
       return;
     }
 
@@ -25,7 +37,7 @@ export const signUp = async (req: Request, res: Response) => {
       phone,
       password: hashedPassword,
     });
-    res.status(200).json({ message: "Successfully created user", newUser });
+    res.status(200).json({ message: "Амжилттай бүртгүүллээ", newUser });
   } catch (error) {
     console.error("Error during signup:", error);
 
