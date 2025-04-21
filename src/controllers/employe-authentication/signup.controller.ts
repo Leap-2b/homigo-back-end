@@ -21,7 +21,11 @@ export const signUp = async (req: Request, res: Response) => {
     } = req.body;
     const existingEmploye = await isExistingEmploye(email);
     if (existingEmploye) {
-      res.status(409).json({ message: "User is already registered." });
+      res
+        .status(409)
+        .json({
+          message: "Тухайн емайл юм уу утас дээр хэрэглэгч бүртгүүлсэн байна",
+        });
       return;
     }
     const hashedPassword = await hashPassword(password);
@@ -39,10 +43,9 @@ export const signUp = async (req: Request, res: Response) => {
       category,
       img,
     });
-    res
-      .status(200)
-      .json({ message: "Successfully created Employe", newEmploye });
+    res.status(200).json({ message: "Амжилттай бүртгэгдлээ", newEmploye });
   } catch (error) {
-    res.status(500).json({ message: "Internal Server Error", error });
+    console.log(error);
+    res.status(500).json({ message: "Сэрвэрийн алдаа", error });
   }
 };

@@ -9,9 +9,9 @@ const EmployeSchema = new Schema<employeType>({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   register: { type: String, required: true },
-  about:{type:String , required:true},
-  address: { type: String, required: true, unique: true },
-  secondPhone: { type: Number, required: true, unique: true },
+  about: { type: String, required: true },
+  address: { type: String, required: true },
+  secondPhone: { type: Number, required: true },
   experience: { type: String, required: true },
   category: {
     type: String,
