@@ -1,7 +1,6 @@
 import { model, Model, models, Schema } from "mongoose";
 import { employeType } from "../types";
 import { categoryStatusEnum } from "../constants";
-
 const EmployeSchema = new Schema<employeType>({
   phone: { type: Number, required: true, unique: true },
   email: { type: String, required: true, unique: true },
