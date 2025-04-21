@@ -12,10 +12,12 @@ export const signUp = async (req: Request, res: Response) => {
       firstName,
       lastName,
       register,
+      about,
       address,
       secondPhone,
       experience,
       category,
+      img,
     } = req.body;
     const existingEmploye = await isExistingEmploye(email);
     if (existingEmploye) {
@@ -30,10 +32,12 @@ export const signUp = async (req: Request, res: Response) => {
       firstName,
       lastName,
       register,
+      about,
       address,
       secondPhone,
       experience,
       category,
+      img,
     });
     res
       .status(200)

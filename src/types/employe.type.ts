@@ -11,8 +11,10 @@ export type employeType = {
   firstName: string;
   lastName: string;
   register: string;
+  about: string;
   address: string;
   experience: string;
+  img: string;
   category: categoryStatusEnum;
   products: ProductModelType[];
 };

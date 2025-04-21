@@ -7,15 +7,15 @@ export const signIn = async (req: Request, res: Response) => {
     const { phone, password } = req.body;
     const employe = await EmployeModel.findOne({ phone });
     if (!employe) {
-      res.status(400).json({ message: "employe not found" });
+      res.status(400).json({ message: "тухайн утсандээр ажилтан бүртгэлгүй байна" });
       return;
     }
     const isPasswordCorrect = comparePassword(password, employe.password);
     if (!isPasswordCorrect) {
-      res.status(401).json({ message: "Incorrect phone or password." });
+      res.status(401).json({ message: "Нууц үг буруу байна" });
     }
-    res.status(200).json({ message: "Successfully logged in.", employe });
+    res.status(200).json({ message: "Амжилттай нэвтэрлээ", employe });
   } catch (error) {
-    res.status(500).json({ message: "employ signIn error", error });
+    res.status(500).json({ message: "Сэрвэрийн алдаа", error });
   }
 };

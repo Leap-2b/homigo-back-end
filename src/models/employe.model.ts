@@ -9,6 +9,7 @@ const EmployeSchema = new Schema<employeType>({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   register: { type: String, required: true },
+  about:{type:String , required:true},
   address: { type: String, required: true, unique: true },
   secondPhone: { type: Number, required: true, unique: true },
   experience: { type: String, required: true },
@@ -17,6 +18,7 @@ const EmployeSchema = new Schema<employeType>({
     enum: Object.values(categoryStatusEnum),
     required: true,
   },
+  img: { type: String, required: true },
   products: [{ type: Schema.Types.ObjectId, ref: "Product", required: true }],
 });
 
